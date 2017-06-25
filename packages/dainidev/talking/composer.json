@@ -1,0 +1,13 @@
+{
+    "name": "dainidev/talking",
+    "description": "Laravel realtime chat packages",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Daini Dev",
+            "email": "daini.developer@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

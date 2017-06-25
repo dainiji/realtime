@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/friends', 'FriendsController@index');
+Route::get('/friends', 'FriendsController@index')->middleware('talking');
 Route::any('/friends/make-request', 'FriendsController@makeRequest');
 
 Route::auth();

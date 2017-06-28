@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\User;
 use App\Friends;
 use Config, View, Auth, Helper, URL,Mail, Redirect, Validator,DB,Response,File,Input;
+use Dainidev\Talking\Models\Message;
+use Dainidev\Talking\Models\Participant;
+use Dainidev\Talking\Models\Chat;
 
 class FriendsController extends Controller
 {
@@ -15,6 +18,9 @@ class FriendsController extends Controller
     	$data['allUsers'] = User::with('roles')->get();
     	
     	//dd($data['allUsers']);
+        $chats = new Chat;
+
+        $chats->sayHello();
 
     	return View::make('friends.index',$data);
     }

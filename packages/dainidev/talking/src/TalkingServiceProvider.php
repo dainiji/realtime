@@ -13,7 +13,7 @@ class TalkingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        include __DIR__.'/routes.php';
+        include __DIR__.'/example/routes.php';
         /* 
         for Laravel 5.4 migration
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
@@ -38,7 +38,7 @@ class TalkingServiceProvider extends ServiceProvider
     {
         //
         
-        $this->app->make('Dainidev\Talking\Controllers\TalkingController');
-        $this->loadViewsFrom(__DIR__.'/Views', 'Talking');
+        $this->app->make('Dainidev\Talking\example\Controllers\TalkingController');
+        $this->loadViewsFrom(__DIR__.'/example/Views', 'Talking');
     }
 }

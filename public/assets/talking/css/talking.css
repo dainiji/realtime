@@ -1,0 +1,12 @@
+.daini_talking{
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 300px;
+	height: 100%;
+	background: #CCC;
+	padding: 5px;
+}
+.talking-search-container{
+	display: none;
+}

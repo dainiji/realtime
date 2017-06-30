@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
     	$role_user       = Role::where("name","User")->first();
 
         $admin = new User();
+        $admin->name  = "Admin";
         $admin->first_name  = "Admin";
         $admin->last_name   = "User";
         $admin->email       = "admin@example.com";
@@ -30,6 +31,7 @@ class UserTableSeeder extends Seeder
 
 
         $manager = new User();
+        $manager->name   = "Manager";
         $manager->first_name   = "Manager";
         $manager->last_name    = "User";
         $manager->email        = "manager@example.com";
@@ -38,6 +40,7 @@ class UserTableSeeder extends Seeder
         $manager->roles()->attach($role_manager);
 
         $author = new User();
+        $author->name     = "Author";
         $author->first_name 	= "Author";
         $author->last_name 	= "User";
         $author->email 		= "author@example.com";
@@ -46,6 +49,7 @@ class UserTableSeeder extends Seeder
         $author->roles()->attach($role_member);
         
         $user = new User();
+        $user->name   = "Visitor";
         $user->first_name   = "Visitor";
         $user->last_name    = "User";
         $user->email        = "visitor@example.com";

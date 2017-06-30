@@ -16,6 +16,7 @@ class userListTableSeeder extends Seeder
         $role_author	 = 3; //Role::where("name","Member")->first();
         //
         $author = new User();
+        $author->name     = "Daini";
         $author->first_name 	= "Daini";
         $author->last_name 	= "Author";
         $author->email 		= "daini@example.com";
@@ -24,6 +25,7 @@ class userListTableSeeder extends Seeder
         $author->roles()->attach($role_author);
 
         $author = new User();
+        $author->name     = "Vikas";
         $author->first_name 	= "Vikas";
         $author->last_name 	= "Author";
         $author->email 		= "vikas@example.com";
@@ -32,7 +34,8 @@ class userListTableSeeder extends Seeder
         $author->roles()->attach($role_author);
 
         $author = new User();
-        $author->first_name 	= "Amit";
+        $author->name         = "Amit";
+        $author->first_name   = "Amit";
         $author->last_name 	= "Author";
         $author->email 		= "amit@example.com";
         $author->password 	= bcrypt('amit');
@@ -40,10 +43,11 @@ class userListTableSeeder extends Seeder
         $author->roles()->attach($role_author);
         
         $author = new User();
-        $author->first_name 	= "Gaurav";
-        $author->last_name 	= "Author";
-        $author->email 		= "gaurav@example.com";
-        $author->password 	= bcrypt('gaurav');
+        $author->name           = "Gaurav";
+        $author->first_name     = "Gaurav";
+        $author->last_name 	    = "Author";
+        $author->email 		    = "gaurav@example.com";
+        $author->password 	    = bcrypt('gaurav');
         $author->save();
         $author->roles()->attach($role_author);
 

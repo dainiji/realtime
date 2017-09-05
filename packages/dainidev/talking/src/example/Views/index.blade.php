@@ -35,16 +35,12 @@
 
 
 	$("#talking-search-btn").on('click',function(){
-		alert("Search for "+$("#talking-search-txt").val());
-
 		searchFriend($("#talking-search-txt").val());
-
-
 	});
 
 	$("#show-talking-search").on('click', function(){
 		$("#talking-search-container").slideDown();
 	})
 
-	
+
 </script>

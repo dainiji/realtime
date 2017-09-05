@@ -25,7 +25,7 @@ class Friends extends Model
         return $result;
     }
 
-    public static function makeRequest($userId){
+    public static function makeRequest($userId,reqMsg){
         $user1 = Auth::id();
         $user2 = $userId;
 
@@ -42,6 +42,8 @@ class Friends extends Model
         $friendRequest->status = '0';
 
         $friendRequest->save(); 
+
+        
     }
 
 

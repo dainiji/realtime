@@ -14,6 +14,8 @@ use Dainidev\Talking\Models\Friends;
 
 
 
+
+
 use Config, View, Auth, Redirect ,Response;
 
 
@@ -27,19 +29,10 @@ class TalkingController extends Controller
 
 
 	public function initiate(){
-
-    	/*echo "I am initiate function";
-
-    	$friends = Friends::getAllFriends();
-    	echo "<pre>";
-    	print_r($friends);
-    	echo "</pre>"; */
     	return View::make('Talking::index');
-	    	
     }
 
     public function searchFriend(Request $request){
-
 
     	$input = $request->all();
     	$data['results'] = Friends::search($request->input('user'));
@@ -49,26 +42,35 @@ class TalkingController extends Controller
     	
     	$html = View::make('Talking::ajax.search', $data)->render();
 		return response()->json(['html' => $html, 'error' => 0]);
-
-
     }
 
     public function sendFriendRequest(Request $request){
-    	
-    	if(Friends::alreadyFriend($request->input('userId'))){
-    		$message = "You are already friend with ".$request->input('userId');
-    	} else {
-    		
-    		Friends::makeRequest($request->input('userId'));
-    		$message = "Friend request Sent";
-    	}
-    	
+        $data['userId'] = $request->input('userId');
+        $data['userInfo'] = User::where("id",$request->input('userId'))->get()->first();
+        $html = View::make('Talking::ajax.friend-request', $data)->render();
+        return response()->json(['html' => $html, 'error' => 0]);
 
-		return response()->json( ['error' => 0, 'message' => $message]); 	
 
+    	/**/
+    }
+
+    public function submitFriendRequest(Request $request){
+        if(Friends::alreadyFriend($request->input('userId'))){
+            $message = "You are already friend with ".$request->input('userId');
+        } else {
+            
+            Friends::makeRequest($request->input('userId'),$request->input('reqMsg'));
+            $message = "Friend request Sent";
+        }
+        return response()->json( ['error' => 0, 'message' => $message]); 
     }
 
     
+    public function chatWindow(Request $request){
+    	$data['userId'] = $request->input('userId');
+    	$html = View::make('Talking::ajax.chat-window', $data)->render();
+    	return response()->json(['html' => $html, 'error' => 0]);
+    }
     
     
 

@@ -1,4 +1,4 @@
-.daini_talking{
+.daini-talking{
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -9,4 +9,50 @@
 }
 .talking-search-container{
 	display: none;
+}
+
+.talking-chat-area{
+	position: fixed;
+	bottom: 0;
+	right: 300px;
+	width: 100%;
+	height: 400px;
+	
+	padding: 5px;
+}
+
+.talking-chat-window{
+	float: right;
+	background: #999;
+	width: 300px;
+	height: 400px;
+	float: right;
+
+}
+
+.chat-header{
+	background: #EEE;
+	width: 100%;
+	height:30px;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.msg-list{
+	background: #FFF;
+	width: 294px;
+	height:315px;
+	margin: 2px;
+
+}
+.new-msg textarea{
+	width:250px;
+	float: left;
+	min-height: 50px;
+	max-height: 50px;
+}
+.new-msg .send-button{
+	width:50px;
+	float: left;
 }

@@ -24,7 +24,7 @@
 		$(".send-friend-request").on("click", function(){
 			var reqMsg = $( this ).parent().find(".friend-request-msg").text();
 			alert("Send Now "+reqMsg);
-			submitFriendRequest(reqMsg, {{$userInfo->id}} );
+			submitFriendRequest( {{$userInfo->id}}, reqMsg, );
 		});
 	});
 </script>

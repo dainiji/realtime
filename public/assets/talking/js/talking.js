@@ -99,19 +99,13 @@ function sendMessage(chatId, message,senderId,receiverId,senderName, receiverNam
 
 	//alert("here in function chatId : "+chatId+" message : "+ message+" senderId : "+senderId+" receiverId : "+receiverId+" senderName : "+senderName+" receiverName : "+ receiverName)
 
-	socket.emit( 'message', {
-					chatId: chatId,
-					message: message,
-					senderId : senderId,
-					receiverId : receiverId,
-					senderName : senderName,
-					receiverName : receiverName } );
+	
 
 	
 
-	/*$.ajax({
+	$.ajax({
 			url: "/talking/send-message",
-			dataType: "json",
+			
 			type: "post",
 			data: {
 					"chat_id": chatId,
@@ -120,16 +114,20 @@ function sendMessage(chatId, message,senderId,receiverId,senderName, receiverNam
 				},
 
 			success: function(data,status,xhr){
-				if(data.error == 0){
-					$(".talking-chat-area").append(data.html)
-				}
-				
+				//Emit this message on server
+				socket.emit( 'message', {
+					chatId: chatId,
+					message: message,
+					senderId : senderId,
+					receiverId : receiverId,
+					senderName : senderName,
+					receiverName : receiverName } );
 				
 			},
 			error: function(xhr){
     	        alert("An error occured: " + xhr.status + " " + xhr.statusText);
     	    }
-    });*/
+    });
 }
 
 

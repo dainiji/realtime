@@ -9,8 +9,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
   <script type="text/javascript" src="{{ URL::asset('assets/talking/lib/autogrow/autogrow.js') }}"></script>
   <script type="text/javascript" src="{{ URL::asset('assets/talking/js/talking.js') }}"></script>
+  <script src="{{ URL::to('') }}:8080/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="{{ URL::asset('assets/talking/js/nodeClient.js') }}"></script>
+
 </head>
 <body>
 	<div class="container">

@@ -44,6 +44,8 @@
 	width: 294px;
 	height:315px;
 	margin: 2px;
+	overflow-y: scroll;
+	padding: 5px; 
 
 }
 .new-msg textarea{

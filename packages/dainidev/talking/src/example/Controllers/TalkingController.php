@@ -67,15 +67,18 @@ class TalkingController extends Controller
 
     
     public function chatWindow(Request $request){
-    	$data['userId'] = $userId = $request->input('userId');
+    	$userId = $request->input('userId');
         $chatUsers  = array(Auth::id(), $userId);
 
         
 
         $data['friendshipDetails'] = Friends::getFriendshipDetails($chatUsers);
-
-
-        $data['chat_id'] = $chat_id = Chat::getThreadId($chatUsers);
+        
+        $data['receiverId'] = $userId;
+        $friendName = User::select('name')->where('id','=', $userId)->first();
+        $data['friendName'] = $data['receiverName']  = $friendName->name;
+        $data['senderName'] = Auth::user()->name;
+        $data['chat_id'] = $chat_id = Chat::getChatId($chatUsers);
         $data['messages'] = Message::getMessage($chat_id);
 
     	$html = View::make('Talking::ajax.chat-window', $data)->render();

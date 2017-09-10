@@ -11,7 +11,7 @@ class Chat extends Model
     	echo "I am hello function";
     }
 
-    public static function getThreadId($chatUsers){
+    public static function getChatId($chatUsers){
     	asort($chatUsers);
         $chatUsers = implode("_", $chatUsers); 
         $chat = Chat::where("chat_users", $chatUsers)->get()->first();

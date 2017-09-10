@@ -1,3 +1,6 @@
+
+
+
 <a href="javascript:void(0)" id="show-talking-search"> Search for a Friend</a>
 
 <div class="talking-search-container" id="talking-search-container">
@@ -40,7 +43,10 @@
 
 	$("#show-talking-search").on('click', function(){
 		$("#talking-search-container").slideDown();
-	})
+	});
 
-
+	$(document).ready(function(){
+            //alert("I am here");
+		socket.emit("update_user_socket", {{ Auth::id() }});
+	});
 </script>

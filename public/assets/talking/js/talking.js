@@ -1,4 +1,4 @@
-$('textarea').autogrow({onInitialize: true});
+
 function sendFriendRequest(userId){
 	$.ajax({
 			url: "/talking/send-friend-request",
@@ -94,13 +94,27 @@ function openChatWindow(userId){
     });
 }
 
-function sendMessage(chat_id, message){
-	$.ajax({
+//      Send Message    
+function sendMessage(chatId, message,senderId,receiverId,senderName, receiverName){
+
+	//alert("here in function chatId : "+chatId+" message : "+ message+" senderId : "+senderId+" receiverId : "+receiverId+" senderName : "+senderName+" receiverName : "+ receiverName)
+
+	socket.emit( 'message', {
+					chatId: chatId,
+					message: message,
+					senderId : senderId,
+					receiverId : receiverId,
+					senderName : senderName,
+					receiverName : receiverName } );
+
+	
+
+	/*$.ajax({
 			url: "/talking/send-message",
 			dataType: "json",
 			type: "post",
 			data: {
-					"chat_id": chat_id,
+					"chat_id": chatId,
 					"message": message,
 					"_token": $('meta[name="_token"]').attr('content'),
 				},
@@ -115,7 +129,7 @@ function sendMessage(chat_id, message){
 			error: function(xhr){
     	        alert("An error occured: " + xhr.status + " " + xhr.statusText);
     	    }
-    });
+    });*/
 }
 
 
@@ -134,6 +148,8 @@ $(document).ready(function(){
             alert("An error occured: " + xhr.status + " " + xhr.statusText);
         }
     });
+
+    $('textarea').autogrow({onInitialize: true});
 
 	
 	

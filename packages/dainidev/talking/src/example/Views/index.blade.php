@@ -1,7 +1,34 @@
 
+<div class="row">
+	
+	<div class="col-md-3">	
+		<a href="javascript:void(0)" class="friendList">
+			<i class="fa fa-users" aria-hidden="true"></i>
+		</a>		
+	</div>
+
+	<div class="col-md-3">
+		<a href="javascript:void(0)" class="friendRequest">
+			<i class="fa fa-user-plus" aria-hidden="true"></i><span class="badge">3</span>
+		</a>
+	</div>
+
+	<div class="col-md-3">
+		<a href="javascript:void(0)" class="unreadMessage">
+			<i class="fa fa-comments" aria-hidden="true"></i><span class="badge">10</span>
+		</a>
+	</div>
+	
+	<div class="col-md-3">
+		<a href="javascript:void(0)" class="searchFriend" id="show-talking-search">
+			<i class="fa fa-search" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
 
 
-<a href="javascript:void(0)" id="show-talking-search"> Search for a Friend</a>
+
 
 <div class="talking-search-container" id="talking-search-container">
 	<input type="text" id="talking-search-txt" class="form-control">

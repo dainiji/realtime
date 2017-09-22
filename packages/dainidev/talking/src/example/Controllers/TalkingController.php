@@ -70,8 +70,6 @@ class TalkingController extends Controller
     	$userId = $request->input('userId');
         $chatUsers  = array(Auth::id(), $userId);
 
-        
-
         $data['friendshipDetails'] = Friends::getFriendshipDetails($chatUsers);
         
         $data['receiverId'] = $userId;
@@ -98,14 +96,54 @@ class TalkingController extends Controller
 
     public function sendMessage(Request $request){
         $input = $request->all();
-        $message = new Message();
-        $message->chat_id = $input['chat_id'];
-        $message->user_id = Auth::id();
-        $message->body = $input['message'];
-        $message->save();
+        Message::saveMessage($input['chat_id'],$input['message']);
+    }
 
+    public function recentChats(){
+
+        $participantList = Participant::where('user_id',Auth::id())->get();
+
+        //echo "<pre>";
+        //print_r($participantList);
+        //echo "</pre>";
+
+        //$chats = array();
+        foreach($participantList as $key => $participant){
+            $chats[$key] = $participant->chat_id;
+        }
+        //print_r($chats);
+
+        $recentChatList = Chat::whereIn('id',$chats)->orderBy('updated_at','desc')->get();
+
+        foreach($recentChatList as $key => $chat){
+            //echo $chat->id.", ";
+
+            $friends[$key] = Participant::where('chat_id',$chat->id)
+                                    ->where('user_id',"!=",Auth::id())
+                                    ->join('users',"participants.user_id","=","users.id")
+                                    ->get()->first();
+        }
+        //print_r($recentChatList);
+
+        //echo "<pre>";
+        //print_r($friends);
+
+        foreach ($friends as $key => $friend) {
+            # code...
+            //echo $friend->name."<br/>";
+        }
+
+        $data['recentChatfirends'] = $friends;
+
+        $friendsObj = new Friends();
+		$data['friendsObj'] = $friendsObj;
+
+        $html = View::make('Talking::ajax.recent-chats', $data)->render();
+        //echo $html;
+		return response()->json(['html' => $html, 'error' => 0]);
+        
     }
     
-
+    
 
 }

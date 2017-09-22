@@ -73,7 +73,12 @@ class Friends extends Model
             
             switch($result[0]->status){
                 case '0':
-                    $status = "Pending";
+                	if($result[0]->action_user_id == Auth::id()){
+                		$status = "Pending";
+                	} else {
+                		$status = "Request";
+                	}
+                    
                 break;
 
                 case '1':

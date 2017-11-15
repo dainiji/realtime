@@ -22,6 +22,7 @@ Route::group(array('prefix' => '/talking'), function(){
 	
 
 	Route::any('/recent-chats', array('as' => 'talking.recent-chats', 'uses' => 'Dainidev\Talking\example\Controllers\TalkingController@recentChats'))->middleware('web')->middleware('talking');
+	Route::any('/unread-chats', array('as' => 'talking.unread-chats', 'uses' => 'Dainidev\Talking\example\Controllers\TalkingController@unreadChats'))->middleware('web')->middleware('talking');
 	
 
 

@@ -79,6 +79,9 @@ class TalkingController extends Controller
         $data['chat_id'] = $chat_id = Chat::getChatId($chatUsers);
         $data['messages'] = Message::getMessage($chat_id);
 
+
+        Participant::updateReadStatus($chat_id,Auth::id());
+
     	$html = View::make('Talking::ajax.chat-window', $data)->render();
     	return response()->json(['html' => $html, 'error' => 0]);
     }
@@ -101,20 +104,11 @@ class TalkingController extends Controller
 
     public function recentChats(){
 
-        $participantList = Participant::where('user_id',Auth::id())->get();
+        $myChats = Chat::getMychatList();  //Get Login User Chat List Ids only
 
-        //echo "<pre>";
-        //print_r($participantList);
-        //echo "</pre>";
-
-        //$chats = array();
-        foreach($participantList as $key => $participant){
-            $chats[$key] = $participant->chat_id;
-        }
-        //print_r($chats);
-
-        $recentChatList = Chat::whereIn('id',$chats)->orderBy('updated_at','desc')->get();
-
+        // Now get Chat List Object Order By 
+        $recentChatList = Chat::whereIn('id',$myChats)->orderBy('updated_at','desc')->get();  
+ 
         foreach($recentChatList as $key => $chat){
             //echo $chat->id.", ";
 
@@ -143,6 +137,32 @@ class TalkingController extends Controller
 		return response()->json(['html' => $html, 'error' => 0]);
         
     }
+    
+    public function unreadChats(){
+        $myChats = Chat::getMychatList(); //Get Login User Chat List Ids
+        //print_r($myChats);
+
+        $count = 0;
+        foreach ($myChats as $key => $chat_id) {
+            $chat = Chat::find($chat_id);
+            
+            $participant = Participant::where("chat_id","=",$chat_id)->where('user_id',"=",Auth::id())->get()->first();
+
+            echo "Chat->updated_at : ".$chat->updated_at," ====== ";
+            echo $participant->last_read."<br>";
+
+
+            if($participant->last_read < $chat->updated_at){
+                $count++;
+            }
+        }
+
+
+        echo $count;
+
+    }
+
+
     
     
 

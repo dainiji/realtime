@@ -25,7 +25,7 @@ class Message extends Model
         $message->save();
 
         Participant::updateReadStatus($chat_id,Auth::id());
-
+        
         $chat = Chat::find($chat_id);
         $chat->touch();
     }

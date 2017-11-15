@@ -121,7 +121,7 @@ class Friends extends Model
         $participant1 = new Participant();
         $participant1->chat_id = $chat->id;
         $participant1->user_id = Auth::id();
-        $participant1->last_read = date("YYYY-MM-DD HH:MM:SS");
+        $participant1->last_read = $chat->updated_at;
         $participant1->save();
 
         // Saving Particepent 2
